@@ -1,7 +1,10 @@
 public class printonetohundred {
     static void main() {
-        for(int i = 1 ; i <= 100; i++){
+        int i = 1 ;
+        do{
             System.out.println(i);
+            i++;
         }
+        while(i <= 100);
     }
 }
