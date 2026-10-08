@@ -12,9 +12,11 @@ public class q5 {
 //        linkList.display();
 //        linkList.deletelast();
 //        linkList.display();
-        System.out.println(linkList.size());
-        linkList.deletemiddle();
+//        System.out.println(linkList.size());
+//        linkList.deletemiddle();
+        linkList.delete(400);
         linkList.display();
+
     }
 }
 
@@ -133,6 +135,39 @@ class LinkList{
 
             }
         }
+    }
 
+    public void delete(int val){
+        if(head == null){
+            System.out.println("Empty List");
+            return;
+        }
+        else if(head.data == val){
+            head = head.next;
+        }
+        else{
+            Node temp = head;
+            Node prev = head;
+            while(temp.next != null){
+
+                if(temp.data == val){
+                    break;
+                }
+                prev = temp;
+                temp = temp.next;
+
+            }
+            if(tail.data != val && tail == temp){
+                System.out.println("Not Exists");
+                return;
+            }
+            else if(tail == temp){
+                tail = prev;
+                tail.next = null;
+            }
+            else{
+                prev.next = temp.next;
+            }
+        }
     }
 }
