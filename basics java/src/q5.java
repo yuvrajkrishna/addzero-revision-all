@@ -2,172 +2,326 @@ import java.util.LinkedList;
 
 public class q5 {
     public static void main(String[] args) {
+
         LinkList linkList = new LinkList();
+
         linkList.insert(1);
         linkList.insert(2);
         linkList.insert(3);
         linkList.insert(4);
         linkList.insert(5);
         linkList.insert(6);
-//        linkList.display();
-//        linkList.deletelast();
-//        linkList.display();
-//        System.out.println(linkList.size());
-//        linkList.deletemiddle();
-        linkList.delete(400);
+
+        linkList.printNtNode(4);
+
+        linkList.delete(5);
         linkList.display();
 
+        linkList.insert(5);
+
+        linkList.delete(5);
+        linkList.display();
+
+        linkList.printNtNode(-1);
     }
 }
 
-class Node{
+class Node {
     int data;
     Node next;
-    public Node(int data){
+
+    public Node(int data) {
         this.data = data;
     }
 }
 
-class LinkList{
-    Node head , tail;
+class LinkList {
 
-    LinkList(){
+    Node head, tail;
+
+    LinkList() {
         head = tail = null;
     }
-    public void insert(int data){
+
+    public void insert(int data) {
+
         Node nn = new Node(data);
-        if(head == null){
+
+        if (head == null) {
             head = tail = nn;
         }
         else {
             tail.next = nn;
             tail = nn;
-
         }
     }
-    public void display(){
-        if(head == null){
+
+    public void display() {
+
+        if (head == null) {
             System.out.println("Empty List");
             return;
         }
-        else {
-            Node temp = head;
-            while(temp.next != null){
-                System.out.println(temp.data);
-                temp = temp.next;
-            }
+
+        Node temp = head;
+
+        while (temp.next != null) {
             System.out.println(temp.data);
+            temp = temp.next;
         }
+
+        System.out.println(temp.data);
     }
 
-    public void deletefirst(){
-        if(head == null){
+    public void deletefirst() {
+
+        if (head == null) {
             return;
         }
-        else if(head == tail){
+
+        else if (head == tail) {
+
+            Node temp = head;
+
             head = tail = null;
+
+            temp.next = null;
         }
-        else{
+
+        else {
+
+            Node temp = head;
+
             head = head.next;
+
+            temp.next = null;
         }
     }
 
-    public void deletelast(){
-        if(head == null){
+    public void deletelast() {
+
+        if (head == null) {
             return;
         }
-        else if(head == tail){
+
+        else if (head == tail) {
+
+            Node temp = head;
+
             head = tail = null;
+
+            temp.next = null;
         }
-        else{
+
+        else {
+
             Node temp = head;
             Node prev = head;
-            while(temp.next != null){
+
+            while (temp.next != null) {
+
                 prev = temp;
                 temp = temp.next;
             }
+
             tail = prev;
+
             tail.next = null;
+
+            temp.next = null;
         }
     }
 
-    public int size(){
-        if(head == null){
+    public int size() {
+
+        if (head == null) {
             System.out.println("Empty List");
             return 0;
         }
 
-        else{
-            int count = 0;
-            Node temp = head;
-            while(temp.next != null){
-                count++;
-                temp = temp.next;
-            }
-            return count+1;
+        int count = 0;
+
+        Node temp = head;
+
+        while (temp.next != null) {
+
+            count++;
+
+            temp = temp.next;
         }
+
+        return count + 1;
     }
 
-    public void deletemiddle(){
+    public void deletemiddle() {
+
         int size = size();
-        int mid = size / 2;
-        if(head == null){
+
+        if (head == null) {
             System.out.println("Empty List");
             return;
         }
-        else if(size == 1){
+
+        else if (size == 1) {
+
+            Node temp = head;
+
             head = tail = null;
+
+            temp.next = null;
         }
-        else{
+
+        else {
+
+            int mid = size / 2;
+
             Node temp = head;
             Node prev = head;
-            for(int i = 0; i < mid; i++){
+
+            for (int i = 0; i < mid; i++) {
+
                 prev = temp;
                 temp = temp.next;
             }
 
-            if(tail == temp){
+            if (tail == temp) {
+
                 tail = prev;
+
                 tail.next = null;
+
+                temp.next = null;
             }
-            else{
+
+            else {
+
                 prev.next = temp.next;
 
+                temp.next = null;
             }
         }
     }
 
-    public void delete(int val){
-        if(head == null){
+    public void delete(int val) {
+
+        if (head == null) {
+
             System.out.println("Empty List");
+
             return;
         }
-        else if(head.data == val){
-            head = head.next;
+
+        // Only one node
+        else if (head.data == val && head == tail) {
+
+            Node temp = head;
+
+            head = tail = null;
+
+            temp.next = null;
+
+            return;
         }
-        else{
+
+        // Delete first node
+        else if (head.data == val && head != tail) {
+
+            Node temp = head;
+
+            head = head.next;
+
+            temp.next = null;
+
+            return;
+        }
+
+        else {
+
             Node temp = head;
             Node prev = head;
-            while(temp.next != null){
 
-                if(temp.data == val){
+            while (temp.next != null) {
+
+                if (temp.data == val) {
                     break;
                 }
-                prev = temp;
-                temp = temp.next;
 
+                prev = temp;
+
+                temp = temp.next;
             }
-            if(tail.data != val && tail == temp){
+
+            // Value does not exist
+            if (tail.data != val && tail == temp) {
+
                 System.out.println("Not Exists");
+
                 return;
             }
-            else if(tail == temp){
+
+            // Delete last node
+            else if (tail == temp) {
+
                 tail = prev;
+
                 tail.next = null;
+
+                temp.next = null;
             }
-            else{
+
+            // Delete middle node
+            else {
+
                 prev.next = temp.next;
+
+                temp.next = null;
             }
+        }
+    }
+
+    public void printNtNode(int node) {
+
+        if (head == null) {
+
+            System.out.println("Empty List");
+
+            return;
+        }
+
+        // Invalid position
+        if (node <= 0) {
+
+            System.out.println("Invalid Position");
+
+            return;
+        }
+
+        int size = size();
+
+        // Position greater than list size
+        if (node > size) {
+
+            System.out.println("Not Exists");
+
+            return;
+        }
+
+        int i = 1;
+
+        Node temp = head;
+
+        while (temp != null) {
+
+            if (i == node) {
+
+                System.out.println(temp.data);
+
+                return;
+            }
+
+            i++;
+
+            temp = temp.next;
         }
     }
 }
