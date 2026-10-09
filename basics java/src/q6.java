@@ -8,19 +8,18 @@ public class q6 {
         list.insert(3);
         list.insert(4);
         list.insert(5);
-        Node random ;
-        Node temp = list.head;
-        for(int i=0;i<3;i++) {
-            if( i==1){
-                random = temp;
-                break;
-            }
-            temp = temp.next;
-        }
-        System.out.println(temp.data);
+//        Node temp = list.head;
+//        for(int i=0;i<3;i++) {
+//            if( i==1){
+//                break;
+//            }
+//            temp = temp.next;
+//        }
+//        System.out.println(temp.data);
+//        list.display();
+//        list.deleteRandom(temp);
         list.display();
-        list.deleteRandom(temp);
-        list.display();
+        list.printMiddleElement();
     }
     static class Node{
         int data;
@@ -69,6 +68,16 @@ public class q6 {
         public void deleteRandom(Node temp){
             temp.data = temp.next.data;
             temp.next = temp.next.next;
+        }
+
+        public void printMiddleElement(){
+            Node fast = head;
+            Node slow = head;
+            while(fast!= null && fast.next != null){
+                slow =  slow.next;
+                fast = fast.next.next;
+            }
+            System.out.println(slow.data);
         }
     }
 
