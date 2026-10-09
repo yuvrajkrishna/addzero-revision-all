@@ -6,6 +6,8 @@ public class q6 {
         list.insert(1);
         list.insert(2);
         list.insert(3);
+        list.insert(4);
+        list.insert(5);
         Node random ;
         Node temp = list.head;
         for(int i=0;i<3;i++) {
@@ -65,14 +67,8 @@ public class q6 {
         }
 
         public void deleteRandom(Node temp){
-            Node after = temp.next;
-            while (after.next != null){
-                temp.data = after.data;
-                temp = after;
-                after = after.next;
-            }
-            temp.data = after.data;
-            temp.next = null;
+            temp.data = temp.next.data;
+            temp.next = temp.next.next;
         }
     }
 
