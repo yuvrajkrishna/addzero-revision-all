@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class q5 {
     public static void main(String[] args) {
@@ -12,17 +13,20 @@ public class q5 {
         linkList.insert(5);
         linkList.insert(6);
 
-        linkList.printNtNode(4);
+//        linkList.printNtNode(4);
+//
+//        linkList.delete(5);
+//        linkList.display();
+//
+//        linkList.insert(5);
+//
+//        linkList.delete(5);
+//        linkList.display();
 
-        linkList.delete(5);
-        linkList.display();
+//        linkList.printNtNode(-1);
 
-        linkList.insert(5);
-
-        linkList.delete(5);
-        linkList.display();
-
-        linkList.printNtNode(-1);
+        linkList.printNthNodeFromTail(1);
+//        linkList.display();
     }
 }
 
@@ -323,5 +327,37 @@ class LinkList {
 
             temp = temp.next;
         }
+    }
+
+    public void printNthNodeFromTail(int node) {
+        if(node <= 0){
+            System.out.println("Invalid Position");
+            return;
+        }
+        else if (head == null) {
+            System.out.println("Empty List");
+            return;
+        }
+        else{
+            Stack<Integer> stack = new Stack<>();
+            Node temp = head;
+            while (temp != null) {
+                stack.push(temp.data);
+                temp = temp.next;
+            }
+            int count = 1;
+            while(!stack.isEmpty()){
+                if(count == node){
+                    System.out.println(stack.pop());
+                    return;
+                }
+                stack.pop();
+                count++;
+            }
+
+            System.out.println("Not Exists");
+
+        }
+
     }
 }
