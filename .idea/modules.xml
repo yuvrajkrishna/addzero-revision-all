@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/basics.iml" filepath="$PROJECT_DIR$/.idea/basics.iml" />
       <module fileurl="file://$PROJECT_DIR$/basics java/basics java.iml" filepath="$PROJECT_DIR$/basics java/basics java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/basics java/linkedlistpractice/linkedlistpractice.iml" filepath="$PROJECT_DIR$/basics java/linkedlistpractice/linkedlistpractice.iml" />
     </modules>
   </component>
 </project>
