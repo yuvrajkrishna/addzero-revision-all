@@ -1,14 +1,12 @@
 public class recursion1 {
-    static void printName(int i ,int n){
-        if(i < 1){
-            return;
+    static int  printName(int n){
+        if(n == 0){
+            return 0;
         }
-        printName(i-1,n);
-        System.out.println(i);
-
+        return n+printName(n-1);
     }
     static void main() {
         int n = 5;
-        printName(n,n);
+        System.out.println(printName(n));
     }
 }
